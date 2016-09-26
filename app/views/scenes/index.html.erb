@@ -1,0 +1,5 @@
+<ul>
+  <% @s.each do |s| %>
+  <li><a href="/scenes/<%= s['id'] %>"><%= s['title'] %></a></li>
+  <% end %>
+</ul>

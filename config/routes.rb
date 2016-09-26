@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :scenes
+
   scope '/backend', controller: 'backend' do
     get '', action: 'index'
   end
