@@ -21,8 +21,16 @@ group :development do
   gem 'capistrano-rbenv', "~> 2.0"
   gem 'capistrano3-puma', '~> 1.2', '>= 1.2.1'
   gem 'rails-erd', '~> 1.4.4'
-  gem 'byebug', '~> 6.0.2'
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
+end
+
+group :test do
+end
+
+group :development, :test do
+  gem 'pry-rails', '~> 0.3.6'
+  gem 'pry-byebug', '~> 3.4', '>= 3.4.2'
+  gem 'awesome_print', '~> 1.7'
 end
 

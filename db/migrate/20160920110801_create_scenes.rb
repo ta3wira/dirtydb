@@ -2,7 +2,7 @@ class CreateScenes < ActiveRecord::Migration
   # avoid using change to remember translation tables
   def up
     create_table :scenes do |t|
-      t.integer :interval, default: 30,    null: false
+      t.integer :sampling, default: 10,    null: false
       t.integer :length, default: 0,    null: false
       t.timestamps null: false
     end

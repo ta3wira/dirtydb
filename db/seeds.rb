@@ -6,24 +6,29 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-def rand_word(l=8)
-  return (0...l).map { (65 + rand(26)).chr }.join
+def rand_word(*vals)
+  return (0...8).map { (65 + rand(26)).chr }.join + "___#{vals.map{|i| i.to_s.rjust(3, '0')}.join}"
 end
 
+total_scenes = 6
+total_dimensions = 3
+total_elements = 8
+scene_length = 15 #mins
+sampling = 60 #sec
 
-
-(1..3).each do |i|
-  @d = Dimension.create({title: rand_word})
-  (1..8).each do |j|
-    @e = Element.create({dimension_id: @d['id'] ,description: rand_word(12)})
+total_dimensions.times do |i|
+  d = Dimension.create({title: rand_word(i)})
+  total_elements.times do |j|
+    Element.create({dimension: d ,description: rand_word(i, j)})
   end
 end
 
 
-all_e = Element.pluck(:id)
-(1..6).each do |i|
-  @s = Scene.create({length: 10, title: rand_word})
-  (1..10).each do |j|
-    Script.create({scene_id: @s['id'] ,element_id: all_e.sample, sequence: j})
+total_scenes.times do |i|
+  scene = Scene.create({length: scene_length, sampling: sampling, title: rand_word(i)})
+  Dimension.all.each do |dimension| # for now create for each dimension
+    (scene_length * 60 / sampling).times do |j|
+      Script.create({scene: scene, element: dimension.elements.sample, sequence: j})
+    end
   end
 end

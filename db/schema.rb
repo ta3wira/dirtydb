@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160920200803) do
   add_index "scene_translations", ["scene_id"], name: "index_scene_translations_on_scene_id", using: :btree
 
   create_table "scenes", force: :cascade do |t|
-    t.integer  "interval",   default: 30, null: false
+    t.integer  "sampling",   default: 10, null: false
     t.integer  "length",     default: 0,  null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
